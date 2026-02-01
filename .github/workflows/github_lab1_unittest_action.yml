@@ -19,10 +19,10 @@ jobs:
         python-version: 3.8
 
     - name: Install dependencies
-      run: pip install -r requirements.txt
+      run: pip install -r Lab1/requirements.txt
 
     - name: Run unittests
-      run: python -m unittest test.test_unittest
+      run: python -m unittest Lab1/test/unittest_test.py
 
     - name: Notify on success
       if: success()
