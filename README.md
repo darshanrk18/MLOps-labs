@@ -14,6 +14,19 @@ Introduction to MLOps fundamentals through guided GitHub Labs exercises. This la
 
 ---
 
+## Lab 2: Terraform Beginner Lab
+
+Deploy AWS infrastructure (VPC, subnet, EC2) using Terraform. This lab covers:
+
+- **Infrastructure as Code** — Define AWS resources in `.tf` files
+- **Terraform workflow** — init, plan, apply, destroy
+- **Variables & outputs** — Maintainable, reusable configurations
+- **Networking** — VPC, subnet, Internet Gateway, security group
+
+See [Lab2/README.md](Lab2/README.md) for prerequisites, step-by-step instructions, and how to re-run the lab.
+
+---
+
 ## Project Structure
 
 ```
@@ -30,6 +43,12 @@ MLOps-labs/
 │   └── test/
 │       ├── pytest_test.py                  # Pytest tests
 │       └── unittest_test.py                # Unittest tests
+├── Lab2/
+│   ├── main.tf                             # VPC, subnet, EC2, security group
+│   ├── variables.tf
+│   ├── outputs.tf
+│   ├── terraform.tfvars.example
+│   └── README.md                           # Lab 2 documentation
 └── README.md
 ```
 
