@@ -35,7 +35,20 @@ See [Lab2/README.md](Lab2/README.md) for prerequisites, step-by-step instruction
 
 ---
 
-## Lab 5: Docker_Labs/Lab1
+## Lab 3: Flask GCP API
+
+Customized Flask API lab prepared from `Labs_Chosen/API_Labs/FLASK_GCP_LAB`. This lab covers:
+
+- **Flask API development** - Build prediction endpoints for model inference
+- **Model packaging** - Train and persist a scikit-learn pipeline for serving
+- **Testing** - Verify endpoints with Flask test client and pytest
+- **Cloud deployment** - Package the service for Docker and Cloud Run
+
+See [Lab3/README.md](Lab3/README.md) for setup, API usage, tests, and deployment steps.
+
+---
+
+## Lab 5: Dockerized ML Workflow
 
 Containerized machine learning workflow that trains and evaluates a classifier inside Docker. This lab covers:
 
@@ -70,6 +83,18 @@ MLOps-labs/
 │   ├── outputs.tf
 │   ├── terraform.tfvars.example
 │   └── README.md                           # Lab 2 documentation
+├── Lab3/
+│   ├── src/
+│   │   ├── main.py                         # Flask inference API
+│   │   ├── predict.py                      # Prediction helpers
+│   │   ├── test_api.py                     # API tests
+│   │   └── train.py                        # Model training script
+│   ├── model/                              # Saved model and metrics artifacts
+│   ├── streamlit_app.py                    # Simple frontend for testing
+│   ├── requirements.txt
+│   ├── Dockerfile
+│   ├── .dockerignore
+│   └── README.md                           # Lab 3 documentation
 ├── Lab5/
 │   ├── src/
 │   │   └── main.py                         # Train and evaluate the ML model

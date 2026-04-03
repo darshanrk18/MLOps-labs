@@ -1,0 +1,8 @@
+flask
+gunicorn
+joblib
+numpy
+pytest
+requests
+scikit-learn
+streamlit
