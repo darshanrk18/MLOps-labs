@@ -132,6 +132,27 @@ gcloud run deploy lab3-iris-api \
   --allow-unauthenticated
 ```
 
+## Live Deployment
+
+The API is deployed on Google Cloud Run at:
+
+- Service URL: `https://lab3-iris-api-797881056927.us-east1.run.app`
+- Health check: `https://lab3-iris-api-797881056927.us-east1.run.app/health`
+- Metadata endpoint: `https://lab3-iris-api-797881056927.us-east1.run.app/metadata`
+
+To run the Streamlit frontend against the deployed service:
+
+```bash
+export API_URL="https://lab3-iris-api-797881056927.us-east1.run.app"
+streamlit run streamlit_app.py
+```
+
+## Submission Links
+
+- GitHub repository: `https://github.com/darshanrk18/MLOps-labs`
+- Lab 3 folder: `https://github.com/darshanrk18/MLOps-labs/tree/main/Lab3`
+- Cloud Run service: `https://lab3-iris-api-797881056927.us-east1.run.app`
+
 ## Submission Notes
 
 This version satisfies the assignment's modification requirement because it is not a direct copy of the original source lab. The model, API behavior, frontend configuration, testing approach, and deployment setup were all updated.

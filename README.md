@@ -110,6 +110,6 @@ MLOps-labs/
 
 ## Notes
 
-- `Lab5/` is the lab prepared for assignment submission.
+- `Lab3/` is the lab prepared for assignment submission.
 - Each lab folder contains its own setup instructions and implementation details.
-- For the grader, the most relevant entry points are the root `README.md` and `Lab5/README.md`.
+- For the grader, the most relevant entry points are the root `README.md`, `Lab3/README.md`, and the deployed Cloud Run URL.
