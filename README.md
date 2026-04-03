@@ -37,7 +37,7 @@ See [Lab2/README.md](Lab2/README.md) for prerequisites, step-by-step instruction
 
 ## Lab 3: Flask GCP API
 
-Customized Flask API lab prepared from `Labs_Chosen/API_Labs/FLASK_GCP_LAB`. This lab covers:
+Customized Flask API lab prepared from `API_Labs/FLASK_GCP_LAB`. This lab covers:
 
 - **Flask API development** - Build prediction endpoints for model inference
 - **Model packaging** - Train and persist a scikit-learn pipeline for serving
