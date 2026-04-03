@@ -48,6 +48,21 @@ See [Lab3/README.md](Lab3/README.md) for setup, API usage, tests, and deployment
 
 ---
 
+## Lab 4: GCP Cloud Function
+
+Customized Cloud Function lab prepared from `GCP_Labs/CloudFunction_Labs/Lab1-CloudFunction_Setup`. This lab covers:
+
+- **Serverless inference** - Deploy an HTTP-triggered Google Cloud Function
+- **Model customization** - Train a `RandomForestClassifier` on the Wine dataset
+- **Request validation** - Support metadata `GET` requests and validated prediction `POST` requests
+- **Testing** - Verify the function locally with pytest
+
+See [Lab4/README.md](Lab4/README.md) for setup, local execution, testing, and deployment instructions.
+
+Live function URL: `https://us-central1-civic-access-359510.cloudfunctions.net/lab4-wine-predictor`
+
+---
+
 ## Lab 5: Dockerized ML Workflow
 
 Containerized machine learning workflow that trains and evaluates a classifier inside Docker. This lab covers:
@@ -68,7 +83,9 @@ MLOps-labs/
 ├── .github/
 │   └── workflows/
 │       ├── github_lab1_pytest_action.yml   # Pytest CI workflow
-│       └── github_lab1_unittest_action.yml # Unittest CI workflow
+│       ├── github_lab1_unittest_action.yml # Unittest CI workflow
+│       ├── github_lab3_pytest_action.yml   # Lab 3 CI workflow
+│       └── github_lab4_pytest_action.yml   # Lab 4 CI workflow
 ├── Lab1/
 │   ├── requirements.txt
 │   ├── src/
@@ -95,6 +112,13 @@ MLOps-labs/
 │   ├── Dockerfile
 │   ├── .dockerignore
 │   └── README.md                           # Lab 3 documentation
+├── Lab4/
+│   ├── main.py                             # HTTP Cloud Function handler
+│   ├── requirements.txt
+│   ├── sample_request.json                 # Example prediction payload
+│   ├── tests/
+│   │   └── test_main.py                    # Cloud Function tests
+│   └── README.md                           # Lab 4 documentation
 ├── Lab5/
 │   ├── src/
 │   │   └── main.py                         # Train and evaluate the ML model
@@ -107,9 +131,3 @@ MLOps-labs/
 ```
 
 ---
-
-## Notes
-
-- `Lab3/` is the lab prepared for assignment submission.
-- Each lab folder contains its own setup instructions and implementation details.
-- For the grader, the most relevant entry points are the root `README.md`, `Lab3/README.md`, and the deployed Cloud Run URL.

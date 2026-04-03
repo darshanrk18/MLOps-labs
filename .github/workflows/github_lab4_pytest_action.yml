@@ -1,0 +1,41 @@
+name: Lab4 Cloud Function Tests
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "Lab4/**"
+      - ".github/workflows/github_lab4_pytest_action.yml"
+  pull_request:
+    paths:
+      - "Lab4/**"
+      - ".github/workflows/github_lab4_pytest_action.yml"
+
+jobs:
+  test-lab4:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        working-directory: Lab4
+        run: pip install -r requirements.txt
+
+      - name: Run pytest
+        working-directory: Lab4
+        run: pytest tests/test_main.py --junitxml=pytest-report.xml
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lab4-pytest-report
+          path: Lab4/pytest-report.xml
