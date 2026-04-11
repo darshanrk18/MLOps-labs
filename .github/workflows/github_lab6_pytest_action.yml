@@ -1,0 +1,41 @@
+name: Lab6 ELK Training Tests
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "Lab6/**"
+      - ".github/workflows/github_lab6_pytest_action.yml"
+  pull_request:
+    paths:
+      - "Lab6/**"
+      - ".github/workflows/github_lab6_pytest_action.yml"
+
+jobs:
+  test-lab6:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        working-directory: Lab6
+        run: pip install -r requirements.txt
+
+      - name: Run pytest
+        working-directory: Lab6
+        run: pytest tests/test_training.py --junitxml=pytest-report.xml
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lab6-pytest-report
+          path: Lab6/pytest-report.xml

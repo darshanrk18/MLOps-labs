@@ -4,11 +4,11 @@ Repository for MLOps course labs. Each lab lives in its own folder with a dedica
 
 ## Current Submission
 
-This repository's Lab Assignment 5 submission is in `Lab5/`.
+This repository's Lab Assignment 6 submission is in `Lab6/`.
 
-- Lab folder: [`Lab5/`](Lab5/)
-- Lab documentation: [`Lab5/README.md`](Lab5/README.md)
-- Customizations from the original lab: Wine dataset, Logistic Regression, feature scaling, and saved model metrics
+- Lab folder: [`Lab6/`](Lab6/)
+- Lab documentation: [`Lab6/README.md`](Lab6/README.md)
+- Customizations from the original lab: Breast cancer dataset, Random Forest model, JSON training logs, feature importance tracking, and ELK-ready Logstash configuration
 
 ---
 
@@ -76,6 +76,19 @@ See [Lab5/README.md](Lab5/README.md) for setup, run instructions, and submission
 
 ---
 
+## Lab 6: ELK Logging for ML Training
+
+Customized ELK lab prepared from `ELK_Labs/Lab2_ELK_Setup_Mac`. This lab covers:
+
+- **Structured logging** - Emit newline-delimited JSON logs for ELK ingestion
+- **Model customization** - Train a `RandomForestClassifier` on the breast cancer dataset
+- **Metrics tracking** - Save metrics and top feature importances for later analysis
+- **Testing** - Verify the training pipeline and generated artifacts with pytest
+
+See [Lab6/README.md](Lab6/README.md) for setup, training, Logstash configuration, and ELK workflow steps.
+
+---
+
 ## Project Structure
 
 ```
@@ -85,7 +98,8 @@ MLOps-labs/
 │       ├── github_lab1_pytest_action.yml   # Pytest CI workflow
 │       ├── github_lab1_unittest_action.yml # Unittest CI workflow
 │       ├── github_lab3_pytest_action.yml   # Lab 3 CI workflow
-│       └── github_lab4_pytest_action.yml   # Lab 4 CI workflow
+│       ├── github_lab4_pytest_action.yml   # Lab 4 CI workflow
+│       └── github_lab6_pytest_action.yml   # Lab 6 CI workflow
 ├── Lab1/
 │   ├── requirements.txt
 │   ├── src/
@@ -127,6 +141,15 @@ MLOps-labs/
 │   ├── Dockerfile
 │   ├── .dockerignore
 │   └── README.md                           # Lab 5 documentation
+├── Lab6/
+│   ├── artifacts/                          # Generated log and metrics artifacts
+│   ├── logstash.conf                       # ELK ingestion configuration
+│   ├── requirements.txt
+│   ├── src/
+│   │   └── train_model.py                  # ML training with JSON logging
+│   ├── tests/
+│   │   └── test_training.py                # Training pipeline tests
+│   └── README.md                           # Lab 6 documentation
 └── README.md
 ```
 

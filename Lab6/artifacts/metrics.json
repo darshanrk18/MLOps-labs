@@ -1,0 +1,32 @@
+{
+  "dataset": "breast_cancer",
+  "model": "RandomForestClassifier",
+  "accuracy": 0.9474,
+  "f1_score": 0.9583,
+  "precision": 0.9583,
+  "recall": 0.9583,
+  "train_samples": 455,
+  "test_samples": 114,
+  "top_features": [
+    {
+      "name": "worst perimeter",
+      "importance": 0.1374
+    },
+    {
+      "name": "worst area",
+      "importance": 0.1373
+    },
+    {
+      "name": "worst concave points",
+      "importance": 0.1156
+    },
+    {
+      "name": "mean concave points",
+      "importance": 0.0917
+    },
+    {
+      "name": "worst radius",
+      "importance": 0.0841
+    }
+  ]
+}
