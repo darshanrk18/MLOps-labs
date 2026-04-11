@@ -120,7 +120,3 @@ If you want proof for submission or notes, take screenshots of:
 - `http://localhost:9200` showing Elasticsearch is running
 - Kibana with the `lab6-training-logs` data view
 - Kibana Discover view showing ingested training records
-
-## Submission Notes
-
-This lab satisfies the assignment modification requirement because it is not identical to the source lab. The dataset, model, logging format, metrics, and analysis workflow were all changed.
