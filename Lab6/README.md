@@ -2,18 +2,19 @@
 
 ## Overview
 
-This submission is based on `ELK_Labs/Lab2_ELK_Setup_Mac`, but it is customized into a structured logging workflow for machine learning training instead of reusing the original Iris plus Logistic Regression example.
+This submission is based on `ELK_Labs/Lab2_ELK_Setup_Mac`, but it has been redesigned as a structured logging workflow for machine learning training instead of reusing the original Iris plus Logistic Regression example.
 
-The project trains a breast cancer classifier, writes JSON log events for ELK ingestion, and stores training metrics for later inspection in Kibana or Elasticsearch.
+The project trains a breast cancer classifier, writes newline-delimited JSON logs for Logstash ingestion, and saves model metrics for exploration in Elasticsearch and Kibana.
 
 ## Changes Made from the Original Lab
 
 - replaced the Iris dataset with the breast cancer dataset
 - replaced Logistic Regression with a `RandomForestClassifier`
-- changed plain text logging into newline-delimited JSON logs for easier Logstash ingestion
+- changed plain text logging into JSON log events
 - added metrics export to `artifacts/metrics.json`
 - added top feature importance logging for better Kibana exploration
 - added automated pytest coverage for the training pipeline
+- added Docker Compose support for running Elasticsearch, Kibana, and Logstash together
 
 ## Project Structure
 
@@ -22,6 +23,7 @@ Lab6/
 ├── artifacts/
 │   ├── metrics.json
 │   └── training.log
+├── docker-compose.yml
 ├── logstash.conf
 ├── requirements.txt
 ├── src/
@@ -41,7 +43,7 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-## Run the Training Pipeline
+## Generate Training Artifacts
 
 From `Lab6/`:
 
@@ -51,7 +53,7 @@ python src/train_model.py
 
 This generates:
 
-- `artifacts/training.log` with structured JSON training events
+- `artifacts/training.log` with structured training events
 - `artifacts/metrics.json` with evaluation metrics and top features
 
 ## Run Tests
@@ -62,25 +64,62 @@ From `Lab6/`:
 pytest tests/test_training.py -v
 ```
 
-## Logstash Configuration
+## Run ELK with Docker Compose
 
-Update the `path` field in `logstash.conf` so it points to your local `Lab6/artifacts/training.log` file.
-
-Then start Logstash with:
+Start the stack from `Lab6/`:
 
 ```bash
-bin/logstash -f /absolute/path/to/Lab6/logstash.conf
+docker compose up -d
 ```
 
-The configuration sends records to the Elasticsearch index `lab6-training-logs`.
+Check container status:
+
+```bash
+docker compose ps
+```
+
+Stop the stack when you are done:
+
+```bash
+docker compose down
+```
+
+Available services:
+
+- Elasticsearch: `http://localhost:9200`
+- Kibana: `http://localhost:5601`
+- Logstash API: `http://localhost:9600`
+
+## Logstash Configuration
+
+`logstash.conf` is already configured for the Docker workflow:
+
+- it reads `artifacts/training.log` through a mounted file path
+- it sends documents to the Elasticsearch index `lab6-training-logs`
+- it adds `lab` and `pipeline` fields to each ingested record
+
+If you regenerate `artifacts/training.log`, restart Logstash to reprocess the file:
+
+```bash
+docker compose restart logstash
+```
 
 ## Example ELK Workflow
 
-1. Start Elasticsearch on `http://localhost:9200`.
-2. Start Kibana on `http://localhost:5601`.
-3. Run `python src/train_model.py` to create fresh logs.
-4. Start Logstash with the provided `logstash.conf`.
-5. In Kibana, create a data view for `lab6-training-logs` and explore fields like `event_type`, `accuracy`, `f1_score`, `precision`, `recall`, and `name`.
+1. Run `python src/train_model.py` to create fresh training logs.
+2. Start the ELK stack with `docker compose up -d`.
+3. Open Kibana at `http://localhost:5601`.
+4. Create a data view for `lab6-training-logs`.
+5. Explore fields such as `event_type`, `accuracy`, `f1_score`, `precision`, `recall`, `name`, and `importance`.
+
+## Screenshot Checklist
+
+If you want proof for submission or notes, take screenshots of:
+
+- `docker compose ps`
+- `http://localhost:9200` showing Elasticsearch is running
+- Kibana with the `lab6-training-logs` data view
+- Kibana Discover view showing ingested training records
 
 ## Submission Notes
 
